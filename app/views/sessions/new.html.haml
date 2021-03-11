@@ -1,0 +1,8 @@
+%h2 Login page
+= form_with url: session_path do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.submit "Login"
+
+%span Not registered?
+= link_to 'Sign up', register_path
