@@ -1,0 +1,5 @@
+%h1 Create your event
+= form_with model: @event do |form|
+  %span&= form.label :name
+  = form.text_field :name
+  = form.submit 'Create'

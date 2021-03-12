@@ -1,0 +1,5 @@
+%h1 Summer 2021 Events
+= link_to "Create an event", new_event_path
+- @events.each do |event|
+  %p&= event.name
+  %p&= event.description 

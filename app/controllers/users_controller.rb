@@ -17,12 +17,13 @@ class UsersController < ApplicationController
       redirect_to @user, notice: "#{@user.name} was successfully created"
     else
       flash.now.alert = "User not created"
-      render register_path
+      flash[:errors] = @user.errors.full_messages
+      render :new
     end
   end
 
   def show
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
   end
 
 

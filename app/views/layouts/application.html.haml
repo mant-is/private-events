@@ -9,6 +9,12 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    %nav
+      %header
+        - if @current_user
+          = link_to 'Logout', logout_path
+        - else
+          = link_to 'Login', login_path unless current_page?(login_path)
     - flash.each do |message, type|
       = message
       = type
