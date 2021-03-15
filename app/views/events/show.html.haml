@@ -1,1 +1,6 @@
 %h1&= @event.name
+= form_with model: [@event, @event.invitations.build], url: user_event_invitations_path(@user, @event) do |form|
+  = form.label :invitee
+  = form.text_field :invitee
+  = hidden_field :event_id, @event.id 
+  = form.submit 'Send invitation'

@@ -1,16 +1,4 @@
-%h1 #{ @user.name }
-- if @user.events.select(:name)
-  %h2 Events created by #{ @user.name }
-  - @user.events.each do |event|
-    = event.name
-    - if @user.id == @current_user.id
-      = form_with model: @invitation, url: invitations_path do |f|
-        = f.label :user
-        = f.text_field :user
-        = f.submit 'Send invitation'
-        = hidden_field event, params[:event_id]
-%br  
-%br
+%h2 Hello #{ @current_user.name }
 = link_to 'Create event', new_event_path
 %span &nbsp;|&nbsp;
 = link_to 'Logout', session_path, method: :delete

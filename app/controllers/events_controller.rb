@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
 
   before_action :require_login, except: :index
+  before_action :get_user, only: [:index, :show]
 
   def index
-    @events = Event.all
+    @events = @user.events.all
   end
 
   def new
@@ -21,13 +22,16 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = @user.events.find(params[:id])
   end
-
 
   private
   def event_params
-    params.require(:event).permit(:name)
+    params.require(:event).permit(:event, :name, :user)
+  end
+
+  def get_user
+    @user = User.find(params[:user_id])
   end
 
 end

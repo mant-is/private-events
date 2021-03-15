@@ -19,3 +19,9 @@
       = message
       = type
     = yield
+
+    %footer
+      - if @current_user
+        %br
+        %br
+        = link_to 'My Events', user_events_path(@current_user)

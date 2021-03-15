@@ -1,5 +1,7 @@
 %h1 Summer 2021 Events
-= link_to "Create an event", new_event_path
 - @events.each do |event|
-  %p&= event.name
-  %p&= event.description 
+  %br
+  = link_to event.name, user_event_path(@user, event.id)
+%br
+%br
+= link_to "Create an event", new_event_path
