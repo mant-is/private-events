@@ -17,6 +17,10 @@ omitted = %w(
 # Only the frameworks in Rails that do not pollute our routes
 %w(
   active_storage/engine
+  action_cable/engine
+  action_mailbox/engine
+  action_text/engine
+  active_storage/engine
   active_record/railtie
   action_controller/railtie
   action_view/railtie

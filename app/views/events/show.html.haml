@@ -1,1 +1,14 @@
 %h1&= @event.name
+%h3 Description:  #{ @event.description }
+%h3 Location: #{ @event.location }
+%h3 Invited:
+- @event.invitations.select(:id, :user_id).each do |attendee, i|
+  - attendee = User.find_by_id(attendee.user_id)
+  = attendee.name
+  %br
+- if @current_user.id == @event.user_id
+  = form_with model: [@event, @event.invitations.build], url: user_event_invitations_path(@current_user, @event) do |form|
+    = form.label :invitee
+    = form.text_field :invitee
+    = hidden_field :event_id, @event.id 
+    = form.submit 'Send invitation'

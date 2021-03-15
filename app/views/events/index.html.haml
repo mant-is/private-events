@@ -1,5 +1,20 @@
-%h1 Summer 2021 Events
-= link_to "Create an event", new_event_path
-- @events.each do |event|
-  %p&= event.name
-  %p&= event.description 
+.container-fluid
+  .row
+    .col-sm
+    .col-sm-8.col-md-8.col-lg-5
+      .col.justify-content-center
+        .row-md-2
+          .col-md.justify-content-center{style: "padding: 0"}
+            .d-grid.gap-1
+              .p-2
+                %h1 Summer 2021 Events
+                - @events.each do |event|
+                  %br
+                  - if @current_user and event.user_id == @current_user.id
+                    = link_to event.name, event_path(event.id), class: "list-group-item-info list-group-item list-group-item-action"
+                  - else  
+                    = link_to event.name, event_path(event.id), class: "list-group-item list-group-item-action" 
+                %br
+                %br
+                = link_to "Create an event", new_event_path, class: "btn btn-primary"
+    .col-sm

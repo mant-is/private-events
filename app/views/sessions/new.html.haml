@@ -1,8 +1,19 @@
-%h2 Login page
-= form_with url: session_path do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.submit "Login"
-%br
-%span Not registered?
-= link_to 'Sign up', register_path
+.container-fluid
+  .row
+    .col-sm
+    .col-sm-8.col-md-8.col-lg-5
+      %h2 Login page
+      = form_with url: session_path do |f|
+        .col.justify-content-center
+          .row-md-2
+            .col-md.justify-content-center{style: "padding: 0"}
+              .d-grid.gap-1
+                .p-2
+                  = f.label :name, class: "form-label"
+                  = f.text_field :name, class: "form-control"
+              .d-grid.gap-1
+                .p-2
+                  = f.submit "Login", class: "btn btn-info"
+      %br
+      %span Not registered?
+      = link_to 'Sign up', register_path
