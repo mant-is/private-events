@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(user_id: @invitee.id, event_id: @event.id)
     if @invitation.save
       flash[:success] = "Invite sent successfully"
-      redirect_to @invitee
+      redirect_to @event
     else
       flash.now.warning = "Invite sent failed"
       flash.now.alert = @invitation.errors.full_messages

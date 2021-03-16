@@ -8,13 +8,19 @@
             .d-grid.gap-1
               .p-2
                 %h1 Summer 2021 Events
-                - @events.each do |event|
+                - if @events
+                  - @events.each do |event|
+                    - if event.date and event.upcoming
+                      - if @current_user and event.user_id == @current_user.id
+                        = link_to "#{ event.name } (host) - #{ event.date }", event_path(event.id), class: "list-group-item-success list-group-item list-group-item-action"
+                      - else
+                        = link_to "#{ event.name } - #{ event.date }", event_path(event.id), class: "list-group-item-success list-group-item list-group-item-action"     
+                    - elsif event.date && event.past
+                      - if @current_user and event.user_id == @current_user.id
+                        = link_to event.name, event_path(event.id), class: "list-group-item-info list-group-item list-group-item-action"
+                      - else
+                        = link_to event.name, event_path(event.id), class: "list-group-item-warning list-group-item list-group-item-action" 
                   %br
-                  - if @current_user and event.user_id == @current_user.id
-                    = link_to event.name, event_path(event.id), class: "list-group-item-info list-group-item list-group-item-action"
-                  - else  
-                    = link_to event.name, event_path(event.id), class: "list-group-item list-group-item-action" 
-                %br
-                %br
-                = link_to "Create an event", new_event_path, class: "btn btn-primary"
+                  %br
+                  = link_to "Create an event", new_event_path, class: "btn btn-primary"
     .col-sm

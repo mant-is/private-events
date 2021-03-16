@@ -1,0 +1,5 @@
+= form_with model: [@event, @event.invitations.build], class: "form-group", url: user_event_invitations_path(@current_user, @event) do |form| 
+  = form.text_field :invitee, placeholder: "Enter name to send invitation", class: "form-control", autofocus: false
+  .mt-2
+    = form.submit 'Send invitation', class: 'btn btn-secondary btn-sm'
+  = hidden_field :event_id, @event.id 

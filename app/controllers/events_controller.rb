@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
-
+  decorates_assigned :event, :events, :user
   before_action :require_login, except: :index
+  
   # before_action :get_user, only: :show
 
   def index
-    @events = Event.all
+    @events = Event.all.decorate
   end
 
   def new
@@ -16,18 +17,18 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to user_events_path(@current_user), success: "Event successfully created"
     else
-      flash.now.warning = "Event not created successfully"
+      flash[:error] = @event.errors.full_messages
       render :new
     end
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id]).decorate
   end
 
   private
   def event_params
-    params.require(:event).permit(:event, :name, :user, :description, :location)
+    params.require(:event).permit(:event, :name, :user, :date, :time, :description, :location)
   end
 
   def get_user

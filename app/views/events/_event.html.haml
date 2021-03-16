@@ -1,0 +1,17 @@
+.container-fluid
+  .row
+    .col-sm
+    .col-sm-8.col-md-8.col-lg-5
+      .mb-2
+        - if @current_user.id == @event.user_id
+          = render 'invitation'
+      %h1&= event.name
+      %h3&= event.description
+      %h3 Where: #{ event.location }
+      %h3 When: #{ event.date }
+      %h3 Time: #{ event.time.strftime("%I:%M %p") }
+      %hr
+      %h3 Invited:
+      - event.invited.each do |attendee|
+        %p&= attendee
+    .col-sm

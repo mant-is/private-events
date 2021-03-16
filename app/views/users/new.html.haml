@@ -1,5 +1,14 @@
-%h1 Sign up
-= form_with model: @user do |form|
-  = form.label :name
-  = form.text_field :name
-  = form.submit :"Sign up"
+.container-fluid
+  .row
+    .col-sm
+    .col-sm-8.col-md-8.col-lg-5
+      %h1 Sign up
+      .col.justify-content-center
+        .row-md-2
+          .col-md.justify-content-center{style: "padding: 0"}
+            .d-grid.gap-1
+              .p-2
+                = form_with model: @user, class: "input-group" do |form|
+                  = form.text_field :name, class: "form-control", placeholder: "Enter your new user name"
+                  = form.submit :"Sign up", class: "btn btn-success"
+    .col-sm
