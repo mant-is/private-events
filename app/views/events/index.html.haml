@@ -9,7 +9,7 @@
               .p-2
                 %h1 Summer 2021 Events
                 - if @events
-                  - @events.each do |event|
+                  - @events.order(date: :desc).each do |event|
                     - if event.date and event.upcoming
                       - if @current_user and event.user_id == @current_user.id
                         = link_to "#{ event.name } (host) - #{ event.date }", event_path(event.id), class: "list-group-item-success list-group-item list-group-item-action"
