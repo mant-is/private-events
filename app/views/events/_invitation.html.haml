@@ -1,6 +1,6 @@
 .mt-2
 = form_with model: [@event, @event.invitations.build], class: "form-group", url: user_event_invitations_path(@current_user, @event) do |form| 
   = form.select :invitee, @users, {}, { class: 'form-select' }
-  .mt-2
-    = form.submit 'Send invitation', class: 'btn btn-secondary btn-sm'
+  .my-3
+    = form.submit 'Send invitation', class: 'btn btn-secondary btn-sm float-end'
     = hidden_field :event_id, @event.id 

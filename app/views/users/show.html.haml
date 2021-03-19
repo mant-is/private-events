@@ -10,14 +10,14 @@
               .p-2
                 - if @user.upcoming_events_and_invitations.any?
                   %h2 Upcoming Events
-                  - @user.upcoming_events_and_invitations.each do |event|
-                    = link_to event.name, event_path(event.id), class: "upcoming-event"
+                  - @user.upcoming_events_and_invitations.map do |event|
+                    = link_to "#{event.name} - #{event.date.strftime("%m/%d/%Y")}", event_path(event.id), class: "upcoming-event"
               .p-2
                 - if @user.past_events_and_invitations.any?
                   %h2 Past Events
                   - @user.past_events_and_invitations.each do |event|
-                    = link_to event.name, event_path(event.id), class: "past-event"
+                    = link_to "#{event.name} - #{event.date.strftime("%m/%d/%Y")}", event_path(event.id), class: "past-event"
                 .p-2
                   = link_to 'Create event', new_event_path, class: "btn btn-primary"
-                  = link_to 'Logout', session_path, method: :delete, class: "btn btn-warning"
+                  = link_to 'Logout', logout_path, class: "btn btn-warning"
     .col-sm

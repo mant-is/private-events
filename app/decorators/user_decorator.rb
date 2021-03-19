@@ -1,18 +1,22 @@
 class UserDecorator < ApplicationDecorator
   delegate_all
 
-  ## Reminder: meta program these out
-  ## Reminder: set a flag for host
   def upcoming_events
     object.events.where("DATE(date) > ?", Date.today).to_a
   end
 
-  def upcoming_invitations
-    Event.where("DATE(date) > ?", Date.today).find_by_id(object.invitations.each {|i| i.event_id}).to_a
+  def upcoming_invitations(up_inv = [])
+    up_inv = []
+    object.invitations.each do |event|
+      if Event.find(event.event_id).date > Date.today
+        up_inv << Event.find(event.event_id)
+      end
+    end
+    up_inv
   end
 
   def upcoming_events_and_invitations
-    (upcoming_events + upcoming_invitations).sort_by!{ |event| event.date }
+    @upcoming = (upcoming_events + upcoming_invitations).sort_by!{ |event| event.date }
   end
 
   def past_events
@@ -20,10 +24,16 @@ class UserDecorator < ApplicationDecorator
   end
 
   def past_invitations
-    Event.where("DATE(date) < ?", Date.today).find_by_id(object.invitations.each {|i| i.event_id}).to_a
+    pa_inv = []
+    object.invitations.each do |event|
+      if Event.find(event.event_id).date < Date.today
+        pa_inv << Event.find(event.event_id)
+      end
+    end
+    pa_inv
   end
 
   def past_events_and_invitations
-    (past_events + past_invitations).sort_by!{ |event| event.date }
+    @past = (past_events + past_invitations).sort_by!{ |event| event.date }
   end
 end

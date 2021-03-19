@@ -27,3 +27,12 @@
   @extend .list-group-item;
   @extend .list-group-item-action;
 }
+
+dt.col-sm-2 {
+  font-size: 1.2rem;
+}
+
+#event-title {
+  font-size: 1.65rem;
+  font-weight: 500;
+};
