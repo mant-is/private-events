@@ -24,6 +24,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id]).decorate
+    @users = User.all_except(@current_user).map { |u| [ u.name, u.id ] }
   end
 
   private
