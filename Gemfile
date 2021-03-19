@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml-rails', '~> 2.0'
 gem 'pry-byebug'
+# gem 'better_errors', '~> 2.10.0.beta2'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

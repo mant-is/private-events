@@ -2,19 +2,19 @@
   .row
     .col-sm
     .col-sm-8.col-md-8.col-lg-5
-      %h2 #{ @user.name }
       .col.justify-content-center
         .row-md-2
           .col-md.justify-content-center{style: "padding: 0"}
             .d-grid.gap-1
               .p-2
+                %h2&= @user.name + "'s Events"
                 - if @user.upcoming_events_and_invitations.any?
-                  %h2 Upcoming Events
+                  %h2 Upcoming
                   - @user.upcoming_events_and_invitations.map do |event|
                     = link_to "#{event.name} - #{event.date.strftime("%m/%d/%Y")}", event_path(event.id), class: "upcoming-event"
               .p-2
                 - if @user.past_events_and_invitations.any?
-                  %h2 Past Events
+                  %h2 Past
                   - @user.past_events_and_invitations.each do |event|
                     = link_to "#{event.name} - #{event.date.strftime("%m/%d/%Y")}", event_path(event.id), class: "past-event"
                 .p-2

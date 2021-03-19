@@ -40,4 +40,8 @@ class EventsController < ApplicationController
     self.name.titleize
   end
 
+  def authenticate_message
+    "You must be signed in to view event details"
+  end
+
 end

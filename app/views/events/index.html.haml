@@ -22,5 +22,6 @@
                       = link_to event.name, event_path(event.id), class: "list-group-item-warning list-group-item list-group-item-action" 
                   %br
                   %br
-                = link_to "Create an event", new_event_path, class: "btn btn-primary"
+                - if @current_user
+                  = link_to "Create an event", new_event_path, class: "btn btn-primary"
     .col-sm

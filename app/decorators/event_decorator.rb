@@ -11,7 +11,7 @@ class EventDecorator < Draper::Decorator
   end
 
   def date
-    object.date.strftime("%A - %m/%d/%Y")
+    object.date.strftime("%a, %m/%d/%Y")
   end
 
   def time

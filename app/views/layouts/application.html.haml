@@ -25,7 +25,13 @@
               = link_to 'Login', login_path, class: "nav-link text-end" unless @current_user
             %li.nav-item
               = link_to 'Logout', logout_path, class: "nav-link text-end" if @current_user
-    - flash.each do |type, message|
-      .alert{:class => "#{bootstrap_class_for(type)}"}
-        = message
+    
+    .container-fluid
+      .row
+        .col-sm
+        .col-sm.col-md-8.col-lg-5
+          - flash.each do |type, message|
+            .alert{:class => "#{bootstrap_class_for(type)}"}
+              = message
+        .col-sm    
     = yield

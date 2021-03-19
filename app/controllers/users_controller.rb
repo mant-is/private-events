@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 
   before_action :require_login, except: [:index, :new, :create]
 
-  def index
-    @users = User.all
-  end
+  # def index
+  #   @users = User.all
+  # end
 
   def new
     @user = User.new
@@ -16,9 +16,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user, notice: "#{@user.name} was successfully created"
     else
-      flash.now.alert = "User not created"
-      flash[:errors] = @user.errors.full_messages
-      render :new
+      redirect_to register_path, alert: user_errors
     end
   end
 
@@ -32,4 +30,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name)
   end
 
+  def user_errors
+    @user.errors.full_messages.join("', '")
+  end
 end
