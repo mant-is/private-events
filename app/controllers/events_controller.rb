@@ -35,4 +35,8 @@ class EventsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def normalize_name
+    self.name.titleize
+  end
+
 end

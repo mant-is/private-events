@@ -8,26 +8,17 @@
           .col-md.justify-content-center{style: "padding: 0"}
             .d-grid.gap-1
               .p-2
-                - if @user.events.select(:date).where("DATE(date) > ?", Date.today).any?
-                  %h3 Upcoming events
-                  - @user.events.select(:date, :name, :id).where("DATE(date) > ?", Date.today).each do |event|
-                    = link_to event.name, event_path(event.id), class: "list-group-item-info list-group-item list-group-item-action"
-                - if @user.events.select(:date).where("DATE(date) < ?", Date.today).any?
-                  %h3 Past events
-                  - @user.events.select(:date, :name, :id).where("DATE(date) < ?", Date.today).each do |event|
-                    = link_to event.name, event_path(event.id), class: "list-group-item-info list-group-item list-group-item-action"
+                - if @user.upcoming_events_and_invitations.any?
+                  %h2 Upcoming Events
+                  - @user.upcoming_events_and_invitations.each do |event|
+                    = link_to event.name, event_path(event.id), class: "upcoming-event"
+              .p-2
+                - if @user.upcoming_events_and_invitations.any?
+                  %h2 Past Events
+                  - @user.past_events_and_invitations.each do |event|
+                    = link_to event.name, event_path(event.id), class: "past-event"
 
-
-                -# %h3 Invited to
-                -# - @user.invitations.select(:event_id).each do |invitation|
-                -#   .mt-1.mb-1
-                -#     = link_to Event.find_by_id(invitation.event_id).name, event_path(invitation.event_id), class: "list-group-item-warning list-group-item list-group-item-action"            
-                -# %h3 My events
-                -# - @user.events.each do |event|
-                -#   .mt-1.mb-1
-                -#     = link_to event.name, event_path(event.id), class: "list-group-item-info list-group-item list-group-item-action"
                 .p-2
-                  
                   = link_to 'Create event', new_event_path, class: "btn btn-primary"
                   = link_to 'Logout', session_path, method: :delete, class: "btn btn-warning"
     .col-sm

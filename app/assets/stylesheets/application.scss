@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.upcoming-event {
+  @extend .list-group-item-info;
+  @extend .list-group-item;
+  @extend .list-group-item-action;
+}
+
+.past-event {
+  @extend .list-group-item-warning;
+  @extend .list-group-item;
+  @extend .list-group-item-action;
+}

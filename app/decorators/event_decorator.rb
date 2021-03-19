@@ -1,6 +1,5 @@
 class EventDecorator < Draper::Decorator 
   delegate_all
-  include Draper::LazyHelpers
 
   def invited
     invitees = []
